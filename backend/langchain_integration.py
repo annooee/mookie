@@ -53,6 +53,9 @@ class ImageToPlaylistChain:
 
         # Parse the response into a list of songs
         songs_list = [song.strip() for song in response_text.split('\n') if song.strip()]
+
+        self.save_playlist_to_txt(songs_list, "generated_playlist.txt")
+        main()
         
         return songs_list
     
@@ -74,14 +77,19 @@ class ImageToPlaylistChain:
         
         print(f"Playlist has been written to {file_path}")
 
-# Example usage:
+
+# # Example usage:
+# chain = ImageToPlaylistChain(image_path)
+# songs = chain.generate_playlist()
+# print(songs)
+
+# # TXT File
+# file_name = "generated_playlist.txt"
+# chain.save_playlist_to_txt(songs, file_name)
+# # print("Generated Playlist:")
+# # for song in songs:
+# #     print(song)
+
 chain = ImageToPlaylistChain(image_path)
 songs = chain.generate_playlist()
 print(songs)
-
-# TXT File
-file_name = "generated_playlist.txt"
-chain.save_playlist_to_txt(songs, file_name)
-# print("Generated Playlist:")
-# for song in songs:
-#     print(song)
