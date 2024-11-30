@@ -9,6 +9,8 @@ Ever wanted to feel like the main character in a movie? Mookie creates a bespoke
 
 2. Active virtual environment
 
+`python3 -m venv .venv`
+
 `source .venv/bin/activate`
 
 3. Install requirements
@@ -18,3 +20,5 @@ Ever wanted to feel like the main character in a movie? Mookie creates a bespoke
 4. Send image from client to flask server
 
 `python3 send_image.py <your file path here>`
+
+`ex. python3 send_image.py /Users/jshiman/Desktop/annie.png`
