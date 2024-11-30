@@ -1,4 +1,5 @@
 import CurrentSong from "@/components/CurrentSong";
+import SongElement from "@/components/SongElement";
 import Image from "next/image";
 
 export default function Home() {
@@ -12,6 +13,27 @@ export default function Home() {
           imageUrl="https://placehold.co/256x256"
           backgroundColor="#5F2F85"  
         /> */}
+
+        
+
+        <SongElement
+          isUpNext={true}
+          songName="FLY HIGH!!!!"
+          artist="Burnout Syndromes"
+          coverUrl="https://static.wikia.nocookie.net/jpop/images/e/e0/FLY_HIGH_Limited.jpg/revision/latest?cb=20191210062110"
+        />
+        <SongElement
+          isUpNext={false}
+          songName="FLY HIGH!!!!"
+          artist="Burnout Syndromes"
+          coverUrl="https://static.wikia.nocookie.net/jpop/images/e/e0/FLY_HIGH_Limited.jpg/revision/latest?cb=20191210062110"
+        />
+        <SongElement
+          isUpNext={false}
+          songName="FLY HIGH!!!!"
+          artist="Burnout Syndromes"
+          coverUrl="https://static.wikia.nocookie.net/jpop/images/e/e0/FLY_HIGH_Limited.jpg/revision/latest?cb=20191210062110"
+        />
 
 
         <Image
