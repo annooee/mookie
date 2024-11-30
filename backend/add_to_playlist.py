@@ -4,9 +4,9 @@ import json
 import requests
 import time
 
-with open('client_secret.txt', 'r') as file:
-    content = file.read().strip()  
-    client_secret = content
+# with open('client_secret.txt', 'r') as file:
+#     content = file.read().strip()  
+#     client_secret = content
 
 with open('client_id.txt', 'r') as file:
     content = file.read().strip()  
@@ -14,7 +14,7 @@ with open('client_id.txt', 'r') as file:
 
 # Spotify API credentials
 REDIRECT_URI = "http://localhost:8888/callback"
-PLAYLIST_ID = "44wWhdRqqsioOLsDW7a5n9"
+PLAYLIST_ID = "4coH6SCKnKD56jANMCI12k"
 
 # Authorization scopes
 SCOPES = [
