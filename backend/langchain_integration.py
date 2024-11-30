@@ -5,6 +5,7 @@ import ollama
 from langchain.llms import Ollama
 from langchain.chains import LLMChain
 from send_image import send_image
+from add_to_playlist import main
 
 image_path = '../images/image.jpeg' # this is static
 
