@@ -1,6 +1,6 @@
 ![peter-parking-dancing](testing/peter-parker-dancing.png)
 
-# Mookie - Your Day Wrapped
+# Mookie - The Soundtrack of your Life
 Is your life feeling stale? Have you ever wanted to feel like the main character in a movie? Mookie harnesses the power of vision AI to create a dynamically changing playlist that reflects your real-time environment, and provides a daily review to keep track of your life! 
 
 > *By: Annie Yu, Pranav Varma, Anthony Ung, and Joshua Shiman*
