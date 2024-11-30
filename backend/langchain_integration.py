@@ -5,7 +5,7 @@ import ollama
 from langchain.llms import Ollama
 from langchain.chains import LLMChain
 
-image_path = '/Users/annieyu/mookie/images/image.jpeg' # this is static
+image_path = '../images/image.jpeg' # this is static
 
 class ImageToPlaylistChain:
     def __init__(self, image_path):
