@@ -1,5 +1,13 @@
+![peter-parking-dancing](testing/peter-parker-dancing.png)
+
 # Mookie - Your Day Wrapped
-Ever wanted to feel like the main character in a movie? Mookie creates a bespoke dynamically changing playlist that reflects your current moment, and provides a daily review to keep track of your life! 
+Is your life feeling stale? Have you ever wanted to feel like the main character in a movie? Mookie harnesses the power of vision AI to create a dynamically changing playlist that reflects your real-time environment, and provides a daily review to keep track of your life! 
+
+> *By: Annie Yu, Pranav Varma, Anthony Ung, and Joshua Shiman*
+
+## How does Mookie work?
+
+Mookie leverages a Raspberry Pi Zero 2 Wifi with the Raspberry Pi Camera 3 Module to take continously take snapshots of your experiences at regular intervals throughout the day. *But what about my data privacy?* Mookie passes off those images to a locally-hosted, open source, multi-modal GenAI model to analyze attributes, feelings and the mood of your current environment. Mookie takes that as an input for a semantic search of publically sourced music datasets and maps the vibes of your situation to songs that Mookie compiles into a playlist. At the end of your day, Mookie provides a daily wrapped to digest and reflect on your day!
 
 ## How to Run - Backend
 
