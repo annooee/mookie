@@ -23,4 +23,4 @@ def upload_image():
     return jsonify({"message": f"Image uploaded successfully", "new_name": new_filename, "path": file_path}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
