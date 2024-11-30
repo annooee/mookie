@@ -43,10 +43,13 @@ Mookie leverages a Raspberry Pi Zero 2 Wifi with the Raspberry Pi Camera 3 Modul
 
 2. Start React server
 
+3. 
+
 `npm start`
 
 
 ## How to Run - Raspberry Pi
+Images are taken and named image.png
 
 1. Update Raspberry Pi 
 
@@ -63,3 +66,13 @@ Mookie leverages a Raspberry Pi Zero 2 Wifi with the Raspberry Pi Camera 3 Modul
 4. Edit send_image.py and modify IP Address
 
 `url = 'http://<YOUR FLASK SERVER ADDRESS>:5000/upload'` 
+
+5. Navigate to directory and start server
+
+`cd mookie/raspberry-pi/`
+
+`python3 server.py`
+
+6. Send request to raspberry pi to trigger image capture and upload
+
+`curl http://dietpi:8080/capture_and_send`
