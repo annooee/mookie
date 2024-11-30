@@ -2,3 +2,4 @@ flask
 requests
 ollama
 picamzero
+langchain

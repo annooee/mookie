@@ -1,6 +1,8 @@
 import ollama
 import base64
 
+#TO BE DELTED 
+
 def encode_image(image_path):
     """Encodes the image file to base64."""
     with open(image_path, 'rb') as image_file:

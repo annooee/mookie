@@ -4,12 +4,13 @@ import ollama
 #from langchain.prompts import PromptTemplate
 from langchain.llms import Ollama
 from langchain.chains import LLMChain
+from send_image import send_image
 
 image_path = '../images/image.jpeg' # this is static
 
 class ImageToPlaylistChain:
-    def __init__(self, image_path):
-        self.image_path = image_path
+    def __init__(self, send_image):
+        self.image_path = send_image
         self.llm = Ollama()  # Initialize Ollama
 
     def encode_image(self):
