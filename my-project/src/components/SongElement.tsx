@@ -21,7 +21,7 @@ const colors = {
 
 const SongElement: React.FC<SongElementProps> = ({ isUpNext, songName, artist, coverUrl }) => {
   return (
-    <div className={`flex items-center p-4 rounded-lg transition-colors w-[90%] ${
+    <div className={`flex mt-8 items-center p-4 rounded-lg transition-colors w-[90%] ${
       isUpNext 
         ? `${colors.upNext.background} ${colors.upNext.hover}`
         : `${colors.normal.background} ${colors.normal.hover}`
