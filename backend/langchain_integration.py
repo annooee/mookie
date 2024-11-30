@@ -7,7 +7,7 @@ from langchain.chains import LLMChain
 from send_image import send_image
 from add_to_playlist import main
 
-image_path = '/Users/annieyu/mookie/images/image.jpeg' # this is static
+image_path = '../images/image.jpeg' # this is static
 
 class ImageToPlaylistChain:
     def __init__(self, send_image):
