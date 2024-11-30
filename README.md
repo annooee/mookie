@@ -3,10 +3,18 @@ Ever wanted to feel like the main character in a movie? Mookie creates a bespoke
 
 ## How to Run
 
-1. Active virtual environment
+1. Clone repository
+
+`git clone https://github.com/annooee/mookie`
+
+2. Active virtual environment
 
 `source .venv/bin/activate`
 
-2. Install requirements
+3. Install requirements
 
-`pip3 install requirements.txt` 
+`pip3 install -r requirements.txt` 
+
+4. Send image from client to flask server
+
+`python3 send_image.py <your file path here>`
