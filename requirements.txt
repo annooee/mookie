@@ -1,3 +1,5 @@
 flask
 requests
 picamera2
+ollama
+langchain
