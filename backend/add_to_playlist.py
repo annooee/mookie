@@ -147,8 +147,12 @@ def parse_song_list(song_list):
     return parsed_songs
 
 def main():
-    # Example song list
-    song_list = "Take A Bite - beabadoobee, California - beabadoobee, Real Man - beabadoobee, Girl Song - beabadoobee, Ever Seen - beabadoobee"
+    lines = []
+    with open("generated_playlist.txt", "r") as file:
+        for line in file:
+            lines.append(line.strip())
+
+    song_list = ", ".join(lines)
     
     # Get a valid token (either cached or new)
     access_token = get_valid_token()
