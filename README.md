@@ -44,6 +44,14 @@ Ever wanted to feel like the main character in a movie? Mookie creates a bespoke
 
 `sudo apt update`
 
-2. Install picamzero
+2. Install picamera2
 
-`sudo apt install python3-picamzero`
+`sudo apt install -y python3-picamera2`
+
+3. Install requirements
+
+`pip3 install -r requirements.txt`
+
+4. Edit send_image.py and modify IP Address
+
+`url = 'http://<YOUR FLASK SERVER ADDRESS>:5000/upload'` 
