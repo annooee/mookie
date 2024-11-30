@@ -1,7 +1,7 @@
 # Mookie - Your Day Wrapped
 Ever wanted to feel like the main character in a movie? Mookie creates a bespoke dynamically changing playlist that reflects your current moment, and provides a daily review to keep track of your life! 
 
-## How to Run - Server
+## How to Run - Backend
 
 1. Clone repository
 
@@ -26,6 +26,16 @@ Ever wanted to feel like the main character in a movie? Mookie creates a bespoke
 `python3 send_image.py <your file path here>`
 
 `ex. python3 send_image.py /Users/jshiman/Desktop/annie.png`
+
+## How to Run - Frontend
+
+1. Navigate to react
+
+`cd frontend/mookie`
+
+2. Start React server
+
+`npm start`
 
 
 ## How to Run - Raspberry Pi
