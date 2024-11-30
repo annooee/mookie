@@ -6,13 +6,13 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
       <main className="w-full flex flex-col gap-8 row-start-2 items-center">
-        {/* <CurrentSong
+         <CurrentSong
           date="30 Nov"
           songTitle="Dancing Queen"
           artistName="ABBA"
           imageUrl="https://placehold.co/256x256"
           backgroundColor="#5F2F85"  
-        /> */}
+        />
 
         
 
