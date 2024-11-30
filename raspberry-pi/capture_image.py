@@ -1,18 +1,23 @@
 import sys
 import time
-from picamzero import Camera
+from picamera2 import Picamera2, Preview
 
 def take_photo():
-    filepath = f"images/image.png"
-    cam = Camera()
-    cam.take_photo(filepath)
+    # Set up the camera and capture an image
+    picam2 = Picamera2()
+    picam2.start()
+    filepath = "images/image.png"
+    picam2.capture_file(filepath)
+    picam2.stop()
     print(f"Photo taken: {filepath}")
 
+# DOES NOT WORK AS INTENDED
 def continuous_photos():
-    cam = Camera()
+    picam2 = Picamera2()
+    picam2.start()
     while True:
-        filepath = f"images/image.png"
-        cam.take_photo(filepath)
+        filepath = "images/image.png"
+        picam2.capture_file(filepath)
         print(f"Photo taken: {filepath}")
         time.sleep(60)
 
@@ -25,7 +30,6 @@ if __name__ == '__main__':
     mode = sys.argv[1].lower()
 
     if mode == "single":
-        filepath = "images/image.png"
         take_photo()
     elif mode == "continuous":
         continuous_photos()
