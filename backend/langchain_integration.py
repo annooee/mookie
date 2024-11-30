@@ -4,6 +4,8 @@ import ollama
 from langchain.llms import Ollama
 from langchain.chains import LLMChain
 
+image_path = '/Users/annieyu/mookie/images/image.jpeg' # this is static
+
 class ImageToPlaylistChain:
     def __init__(self, image_path):
         self.image_path = image_path
@@ -32,31 +34,40 @@ class ImageToPlaylistChain:
             model='llama3.2-vision',
             messages=[{
                 'role': 'user',
-                'content': 'From this image, generate me a list of songs that fit this scenery in "Song name" - Artist format, no excess text',
+                'content': 'From this image, generate me a list of 5 songs that fit this scenery in "Song name" - Artist format. Just a list, no additional text, no *',
                 'images': [encoded_image]  # Pass the base64-encoded image here
             }]
         )
 
-        print(response)
+        #print(response) debugging lol
 
-        # Extract the text response from Ollama (this will be a list of songs)
-        response_text = response.get("text", "")
-        print("RESPONSE TEXT: ", response_text)
+        # Check if the response contains the 'assistant' message and extract content
+        if response.get('message', {}).get('role') == 'assistant':
+            response_text = response['message'].get('content', '')
+        else:
+            print("Error: No 'assistant' message found.")
+            return []
 
         # Parse the response into a list of songs
         songs_list = [song.strip() for song in response_text.split('\n') if song.strip()]
-        print("SONGS LIST: ",songs_list)
         
         return songs_list
+    
+    def save_playlist_to_txt(self, songs, file_name):
+        """Saves the generated playlist to a text file."""
+        with open(file_name, 'w') as f:
+            for song in songs:
+                f.write(f"{song}\n")
+        print(f"Playlist has been written to {file_name}")
 
 # Example usage:
-image_path = '/Users/annieyu/mookie/images/image.jpeg'  # Path to your image
 chain = ImageToPlaylistChain(image_path)
-print(chain)
-
-# Generate playlist and print the result
 songs = chain.generate_playlist()
 print(songs)
-print("Generated Playlist:")
-for song in songs:
-    print(song)
+
+# TXT File
+file_name = "generated_playlist.txt"
+chain.save_playlist_to_txt(songs, file_name)
+# print("Generated Playlist:")
+# for song in songs:
+#     print(song)
