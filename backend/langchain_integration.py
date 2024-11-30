@@ -7,7 +7,7 @@ from langchain.chains import LLMChain
 from send_image import send_image
 from add_to_playlist import main
 
-image_path = '../images/image.jpeg' # this is static
+image_path = '../images/image.png' # this is static
 
 class ImageToPlaylistChain:
     def __init__(self, send_image):
@@ -62,13 +62,13 @@ class ImageToPlaylistChain:
     def save_playlist_to_txt(self, songs, file_name):
         """Saves the generated playlist to a text file in the backend folder."""
         # Define the path for the file to be saved inside the 'backend' folder
-        backend_folder = os.path.join(os.getcwd(), 'backend')
+        #backend_folder = os.path.join()
         
         # Ensure the backend folder exists
-        os.makedirs(backend_folder, exist_ok=True)
+        #os.makedirs(backend_folder, exist_ok=True)
         
         # Full file path to save the playlist text
-        file_path = os.path.join(backend_folder, file_name)
+        file_path = './generated_playlist.txt'
         
         # Write the songs to the file
         with open(file_path, 'w') as f:
