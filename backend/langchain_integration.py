@@ -1,4 +1,5 @@
 import base64
+import os
 import ollama
 #from langchain.prompts import PromptTemplate
 from langchain.llms import Ollama
@@ -54,11 +55,22 @@ class ImageToPlaylistChain:
         return songs_list
     
     def save_playlist_to_txt(self, songs, file_name):
-        """Saves the generated playlist to a text file."""
-        with open(file_name, 'w') as f:
+        """Saves the generated playlist to a text file in the backend folder."""
+        # Define the path for the file to be saved inside the 'backend' folder
+        backend_folder = os.path.join(os.getcwd(), 'backend')
+        
+        # Ensure the backend folder exists
+        os.makedirs(backend_folder, exist_ok=True)
+        
+        # Full file path to save the playlist text
+        file_path = os.path.join(backend_folder, file_name)
+        
+        # Write the songs to the file
+        with open(file_path, 'w') as f:
             for song in songs:
                 f.write(f"{song}\n")
-        print(f"Playlist has been written to {file_name}")
+        
+        print(f"Playlist has been written to {file_path}")
 
 # Example usage:
 chain = ImageToPlaylistChain(image_path)
