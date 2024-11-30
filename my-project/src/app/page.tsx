@@ -1,3 +1,5 @@
+"use client";
+import { useState } from 'react';
 import CurrentSong from "@/components/CurrentSong";
 import SongElement from "@/components/SongElement";
 import DateDisplay from "../components/MusicPlayer/DateDisplay"
@@ -7,12 +9,20 @@ import { CarouselMain } from "../components/Carousel";
 
 
 export default function Home() {
+  const [bgColor, setBgColor] = useState("#5F2F85"); // Default purple color
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
+    <div 
+      style={{ 
+        background: `linear-gradient(to bottom, ${bgColor} 0%, rgba(0, 0, 0, 1) 100%)`,
+        transition: 'background 0.3s ease-in-out' 
+      }}
+      className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]"
+    >
       <main className="w-full flex flex-col row-start-2 items-center">
         <Header/>
         <DateDisplay/>
-         <CarouselMain/>
+        <CarouselMain onSlideChange={setBgColor}/>
         <SongElement
           isUpNext={true}
           songName="FLY HIGH!!!!"
