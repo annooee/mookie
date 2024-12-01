@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import DateDisplay from "../components/MusicPlayer/DateDisplay"
 import Header from "../components/MusicPlayer/Header"
-import Image from "next/image";
 import { CarouselMain } from "../components/Carousel";
 import Queue from "../components/Queue";
 
