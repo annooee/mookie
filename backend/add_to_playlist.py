@@ -20,7 +20,9 @@ PLAYLIST_ID = "4coH6SCKnKD56jANMCI12k"
 SCOPES = [
     "playlist-modify-public",
     "playlist-modify-private",
-    "user-read-currently-playing"
+    "user-read-currently-playing",
+    "user-read-playback-state",
+    "user-modify-playback-state"
 ]
 
 def get_cached_token():
@@ -79,6 +81,26 @@ def get_valid_token():
     webbrowser.open(auth_url)
     return wait_for_token()
 
+def get_active_device(access_token):
+    """Get the currently active Spotify device"""
+    url = "https://api.spotify.com/v1/me/player/devices"
+    headers = {
+        "Authorization": f"Bearer {access_token}"
+    }
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        devices = response.json()['devices']
+        # First try to find an active device
+        active_devices = [d for d in devices if d['is_active']]
+        if active_devices:
+            return active_devices[0]['id']
+        # If no active device but devices exist, return the first one
+        elif devices:
+            return devices[0]['id']
+    return None
+
 def search_track(access_token, song_name, artist):
     """Search for a track on Spotify"""
     query = f"{song_name} artist:{artist}"
@@ -109,7 +131,7 @@ def search_track(access_token, song_name, artist):
 def add_tracks_to_playlist(access_token, track_uris):
     """Add multiple tracks to the specified playlist"""
     if not track_uris:
-        print("No tracks to add.")
+        print("No tracks to add to playlist.")
         return
         
     url = f"https://api.spotify.com/v1/playlists/{PLAYLIST_ID}/tracks"
@@ -128,9 +150,44 @@ def add_tracks_to_playlist(access_token, track_uris):
         response = requests.post(url, headers=headers, json=data)
         
         if response.status_code == 201:
-            print(f"Added batch of {len(batch)} tracks successfully!")
+            print(f"Added batch of {len(batch)} tracks to playlist successfully!")
         else:
-            print(f"Failed to add batch. Error:", response.text)
+            print(f"Failed to add batch to playlist. Error:", response.text)
+
+def add_tracks_to_queue(access_token, track_uris):
+    """Add multiple tracks to the user's queue"""
+    if not track_uris:
+        print("No tracks to add to queue.")
+        return
+
+    # Get active device
+    device_id = get_active_device(access_token)
+    if not device_id:
+        print("No active Spotify device found. Please start playing Spotify on any device and try again.")
+        return
+
+    url = "https://api.spotify.com/v1/me/player/queue"
+    headers = {
+        "Authorization": f"Bearer {access_token}"
+    }
+    
+    # Add tracks to queue one by one (Spotify API limitation)
+    for uri in track_uris:
+        params = {
+            "uri": uri,
+            "device_id": device_id
+        }
+        response = requests.post(url, headers=headers, params=params)
+        
+        if response.status_code == 204:
+            print(f"Added track {uri} to queue successfully!")
+        elif response.status_code == 404:
+            print("No active device found. Please start playing Spotify on any device.")
+            break
+        else:
+            print(f"Failed to add track to queue. Status code: {response.status_code}")
+            print(f"Error message: {response.text}")
+        time.sleep(0.1)  # Add a small delay to avoid rate limiting
 
 def parse_song_list(song_list):
     """Parse the song list string into pairs of song names and artists"""
@@ -173,8 +230,9 @@ def main():
             print(f"Found: {song_name}")
         time.sleep(0.1)  # Add a small delay to avoid rate limiting
     
-    # Add all found tracks to the playlist
+    # Add all found tracks to both playlist and queue
     add_tracks_to_playlist(access_token, track_uris)
+    add_tracks_to_queue(access_token, track_uris)
 
 if __name__ == "__main__":
     main()
