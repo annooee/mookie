@@ -11,7 +11,7 @@ from get_queue import get_queue
 import json
 
 
-image_path = '../images/image.png' # this is static
+image_path = '../backend/images/image.png' # this is static
 prompt = (open('prompt.txt', 'r')).read()
 
 # Load the access token from file
@@ -38,18 +38,11 @@ class ImageToPlaylistChain:
             encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
         return encoded_image
 
-    # def generate_prompt(self):
-    #     """Generates the prompt to send to Ollama."""
-    #     return self.prompt_template
-
     def generate_playlist(self):
         """Uses Ollama to generate a playlist based on the image."""
         # Encode the image to base64
         encoded_image = self.encode_image()
-
-        # Generate the prompt
-        #prompt = self.generate_prompt()
-
+    
         # Correct usage of Ollama's `generate()` method with `model` and `messages`
         response = ollama.chat(
             #model="llama3.2-vision",
@@ -60,8 +53,6 @@ class ImageToPlaylistChain:
                 'images': [encoded_image]  # Pass the base64-encoded image here
             }]
         )
-
-        #print(response) debugging lol
 
         # Check if the response contains the 'assistant' message and extract content
         if response.get('message', {}).get('role') == 'assistant':
@@ -80,13 +71,7 @@ class ImageToPlaylistChain:
     
     def save_playlist_to_txt(self, songs, file_name):
         """Saves the generated playlist to a text file in the backend folder."""
-        # Define the path for the file to be saved inside the 'backend' folder
-        #backend_folder = os.path.join()
-        
-        # Ensure the backend folder exists
-        #os.makedirs(backend_folder, exist_ok=True)
-        
-        # Full file path to save the playlist text
+
         file_path = './generated_playlist.txt'
         
         # Write the songs to the file

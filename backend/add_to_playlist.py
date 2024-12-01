@@ -4,10 +4,6 @@ import json
 import requests
 import time
 
-# with open('client_secret.txt', 'r') as file:
-#     content = file.read().strip()  
-#     client_secret = content
-
 with open('client_id.txt', 'r') as file:
     content = file.read().strip()  
     CLIENT_ID = content
@@ -74,11 +70,12 @@ def get_valid_token():
     token = get_cached_token()
     if token:
         print("Using cached token...")
+        auth_url = get_implicit_auth_url()
+        webbrowser.open(auth_url)
         return token
         
     print("No valid cached token found, starting auth flow...")
-    auth_url = get_implicit_auth_url()
-    webbrowser.open(auth_url)
+    
     return wait_for_token()
 
 def get_active_device(access_token):
