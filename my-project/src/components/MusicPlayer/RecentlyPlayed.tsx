@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function RecentlyPlayed() {
   return (
-    <div className="px-4 mt-6">
+    <div className="px-4 mt-2">
       <h3 className="text-white/80 text-lg mb-3">Recently Listened to.</h3>
       <div className="bg-white/10 rounded-lg p-3 flex items-center gap-3">
         <Image

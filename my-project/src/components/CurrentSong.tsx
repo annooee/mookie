@@ -1,5 +1,12 @@
 import React from 'react';
 import { Play, SkipBack, SkipForward } from 'lucide-react';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+  } from "@/components/ui/carousel"
 
 interface CurrentSongProps {
     date: string;
@@ -28,14 +35,14 @@ const CurrentSong: React.FC<CurrentSongProps> = ({
         : ['--', '---'];
 
     return (
-        <div className="w-full flex justify-center px-4">
+        <div className="w-full flex justify-center mt-4">
             <div
-                className="w-[90%] aspect-[5/5] rounded-3xl p-6 flex flex-col justify-between relative" // Increased width from 4/5 (80%) to 90%, increased height aspect ratio
+                className="w-full aspect-[5/5] rounded-xl p-6 flex flex-col justify-between relative" // Increased width from 4/5 (80%) to 90%, increased height aspect ratio
                 style={{ backgroundColor }}
             >
                 {/* Date Display */}
-                <div className="text-white/80 text-sm font-medium">
-                    <div className="text-4xl font-bold text-white">{day}</div>
+                <div className="text-white/80 text-sm font-medium flex flex-col">
+                    <div className="text-2xl font-bold text-white">{day}</div>
                     <div>{month}</div>
                 </div>
 
