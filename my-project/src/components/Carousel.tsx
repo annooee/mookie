@@ -39,7 +39,13 @@ interface CurrentTrackData {
   track_data: TrackData;
 }
 
-export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string, index: number) => void }) {
+export function CarouselMain({ 
+  onSlideChange,
+  setBgColor 
+}: { 
+  onSlideChange: (color: string, index: number) => void;
+  setBgColor: (color: string) => void;
+}) {
   const [currentTrack, setCurrentTrack] = React.useState<CurrentTrackData | null>(null);
 
   React.useEffect(() => {
@@ -47,7 +53,7 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
   }, []);
 
   const currentSong = {
-    color: "#5F2F85",
+    color: "#8C8C8C",
     songTitle: currentTrack?.track_data?.name || "Loading...",
     artistName: currentTrack?.track_data?.artists?.[0] || "Loading...",
     imageUrl: currentTrack?.track_data?.album?.images?.[0]?.url || "/path-to-default-image"
@@ -55,7 +61,7 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
 
   const historyItems = [
     { 
-      color: "#4CAF50", 
+      color: "#FFAE00", 
       songTitle: "chill guy gyatt\nbrat thursday", 
       artistName: "From the gym, to the office. You were nothing but vibes and just a chill guy ig.",
       date: "29 Nov"
@@ -64,11 +70,16 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
 
   const allSlides = [currentSong, ...historyItems];
 
+  // Set initial background color when component mounts
+  React.useEffect(() => {
+    setBgColor(currentSong.color);
+  }, [currentTrack]); // Depend on currentTrack to update when data loads
+
   return (
     <Carousel 
       opts={{
         align: "start",
-        loop: true,
+        loop: false,
       }}
       className="w-full max-w-xs"
       setApi={(api) => {
