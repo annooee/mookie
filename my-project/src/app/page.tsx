@@ -91,7 +91,10 @@ export default function Home() {
           onSlideChange={handleSlideChange}
           setBgColor={setBgColor}
         />
-        <Queue queueItems={allQueues[currentQueueIndex]} />
+        <Queue 
+          queueItems={allQueues[currentQueueIndex]} 
+          isHistory={currentQueueIndex !== 0}
+        />
       </main>
 
     </div>

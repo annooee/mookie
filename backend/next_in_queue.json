@@ -16,20 +16,34 @@
         },
         {
           "height": 300,
+<<<<<<< HEAD
           "url": "https://i.scdn.co/image/ab67616d00001e02ce4f1737bc8a646c8c4bd25a",
+=======
+          "url": "https://i.scdn.co/image/ab67616d00001e02f2d2adaa21ad616df6241e7d",
+>>>>>>> b9deab2e0d1cee60d12c0e0025d01f95c20b8350
           "width": 300
         },
         {
           "height": 64,
+<<<<<<< HEAD
           "url": "https://i.scdn.co/image/ab67616d00004851ce4f1737bc8a646c8c4bd25a",
+=======
+          "url": "https://i.scdn.co/image/ab67616d00004851f2d2adaa21ad616df6241e7d",
+>>>>>>> b9deab2e0d1cee60d12c0e0025d01f95c20b8350
           "width": 64
         }
       ]
     },
     "is_playing": false,
+<<<<<<< HEAD
     "duration_ms": 354320,
     "external_urls": {
       "spotify": "https://open.spotify.com/track/7tFiyTwD0nx5a1eklYtX2J"
+=======
+    "duration_ms": 262960,
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/2FRnf9qhLbvw8fu4IBXx78"
+>>>>>>> b9deab2e0d1cee60d12c0e0025d01f95c20b8350
     }
   }
 }
