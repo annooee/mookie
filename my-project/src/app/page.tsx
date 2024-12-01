@@ -2,13 +2,20 @@
 import { useState } from 'react';
 import DateDisplay from "../components/MusicPlayer/DateDisplay"
 import Header from "../components/MusicPlayer/Header"
-import Image from "next/image";
 import { CarouselMain } from "../components/Carousel";
 import Queue from "../components/Queue";
 
 export default function Home() {
-  const [bgColor, setBgColor] = useState("#5F2F85");
+  const [bgColor, setBgColor] = useState("");
   const [currentQueueIndex, setCurrentQueueIndex] = useState(0);
+  const [isCurrentlyListening, setIsCurrentlyListening] = useState(true);
+
+  const dates = [
+    "Friday",      // Current day
+    "Thursday",    // Previous day
+    "Wednesday",   // etc...
+    // Add more dates as needed
+  ];
 
   const allQueues = [
     // Queue for first carousel item
@@ -37,6 +44,7 @@ export default function Home() {
   const handleSlideChange = (color: string, index: number) => {
     setBgColor(color);
     setCurrentQueueIndex(index);
+    setIsCurrentlyListening(index === 0);
   };
 
   return (
@@ -49,8 +57,14 @@ export default function Home() {
     >
       <main className="w-full flex flex-col row-start-2 items-center">
         <Header/>
-        <DateDisplay/>
-        <CarouselMain onSlideChange={handleSlideChange}/>
+        <DateDisplay 
+          isCurrentlyListening={isCurrentlyListening}
+          date={dates[currentQueueIndex]}
+        />
+        <CarouselMain 
+          onSlideChange={handleSlideChange}
+          setBgColor={setBgColor}
+        />
         <Queue queueItems={allQueues[currentQueueIndex]} />
       </main>
 
