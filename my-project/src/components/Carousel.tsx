@@ -1,51 +1,78 @@
 import * as React from "react";
 
 import CurrentSong from "@/components/CurrentSong";
+import HistoryCard from "@/components/HistoryCard";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string) => void }) {
-  const slides = [
-    { color: "#5F2F85", songTitle: "I Wonder", artistName: "Kanye West", imageUrl: "/path-to-image" },
-    { color: "#4CAF50", songTitle: "Another Song", artistName: "Artist 2", imageUrl: "/path-to-image" },
-    // Add more slides with their respective colors
+export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string, index: number) => void }) {
+  const currentSong = {
+    color: "#5F2F85",
+    songTitle: "I Wonder",
+    artistName: "Kanye West",
+    imageUrl: "/path-to-image"
+  };
+
+  const historyItems = [
+    { 
+      color: "#4CAF50", 
+      songTitle: "chill guy gyatt\nbrat thursday", 
+      artistName: "From the gym, to the office. You were nothing but vibes and just a chill guy ig.",
+      date: "29 Nov"
+    },
+    // Add more history items as needed
   ];
+
+  const allSlides = [currentSong, ...historyItems];
 
   return (
     <Carousel 
+      opts={{
+        align: "start",
+        loop: true,
+      }}
       className="w-full max-w-xs"
       setApi={(api) => {
         if (!api) return;
         
         api.on("select", () => {
           const selectedIndex = api.selectedScrollSnap();
-          console.log('Current index:', selectedIndex); // Debug log
-          onSlideChange(slides[selectedIndex].color);
+          onSlideChange(allSlides[selectedIndex].color, selectedIndex);
         });
       }}
     >
       <CarouselContent>
-        {slides.map((slide, index) => (
-          <CarouselItem key={index}>
+        {/* Current Song Card */}
+        <CarouselItem key="current">
+          <div className="p-1">
+            <CurrentSong
+              date="30 Nov"
+              songTitle={currentSong.songTitle}
+              artistName={currentSong.artistName}
+              imageUrl={currentSong.imageUrl}
+              backgroundColor={currentSong.color}
+            />
+          </div>
+        </CarouselItem>
+
+        {/* History Cards */}
+        {historyItems.map((item, index) => (
+          <CarouselItem key={`history-${index}`}>
             <div className="p-1">
-              <CurrentSong
-                date="30 Nov"
-                songTitle={slide.songTitle}
-                artistName={slide.artistName}
-                imageUrl={slide.imageUrl}
-                backgroundColor={slide.color}
+              <HistoryCard
+                date={item.date}
+                songTitle={item.songTitle}
+                artistName={item.artistName}
+                backgroundColor={item.color}
               />
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
     </Carousel>
   );
 }
