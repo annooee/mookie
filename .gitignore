@@ -2,3 +2,4 @@ client_secret.txt
 client_id.txt
 node_modules
 generated_playlist.txt
+access_token.json

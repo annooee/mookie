@@ -2,7 +2,7 @@ import requests
 import sys
 
 def send_image(file_path):
-    url = 'http://10.0.0.205:5000/upload'  # Flask server URL - Joshua's Laptop
+    url = 'http://10.0.0.200:5000/upload'  # Flask server URL - Joshua's Laptop
 
     # Open the file in binary mode and send the request
     with open(file_path, 'rb') as image_file:
