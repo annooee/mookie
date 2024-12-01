@@ -4,10 +4,9 @@ import DateDisplay from "../components/MusicPlayer/DateDisplay"
 import Header from "../components/MusicPlayer/Header"
 import { CarouselMain } from "../components/Carousel";
 import Queue from "../components/Queue";
-import { useQueue } from '@/hooks/useSpotifyData';
+import trackData from "../../../backend/next_in_queue.json";
 
 export default function Home() {
-  const { queue, error } = useQueue();
   const [bgColor, setBgColor] = useState("");
   const [currentQueueIndex, setCurrentQueueIndex] = useState(0);
   const [isCurrentlyListening, setIsCurrentlyListening] = useState(true);
@@ -24,9 +23,9 @@ export default function Home() {
     [
       {
         isUpNext: true,
-        songName: queue?.track_data?.name || "Loading...",        
-        artist: queue?.track_data?.artists.join(', ') || "Loading...",
-        coverUrl: queue?.track_data?.album.images[2].url || "/path-to-default-image"
+        songName: trackData.track_data.name,        
+        artist: trackData.track_data.artists.join(', '),
+        coverUrl: trackData.track_data.album.images[2].url // URL from the images array
       },
       
       // ... more songs for first queue
@@ -92,10 +91,7 @@ export default function Home() {
           onSlideChange={handleSlideChange}
           setBgColor={setBgColor}
         />
-        <Queue 
-          queueItems={currentQueueIndex === 0 ? allQueues[currentQueueIndex] : allQueues[currentQueueIndex]} 
-          isHistory={currentQueueIndex !== 0}
-        />
+        <Queue queueItems={allQueues[currentQueueIndex]} />
       </main>
 
     </div>
