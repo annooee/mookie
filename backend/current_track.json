@@ -1,0 +1,37 @@
+{
+  "timestamp": "2024-12-01T01:44:39.373399",
+  "is_playing": true,
+  "track_data": {
+    "name": "Father Time (feat. Sampha)",
+    "artists": [
+      "Kendrick Lamar",
+      "Sampha"
+    ],
+    "album": {
+      "name": "Mr. Morale & The Big Steppers",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2732e02117d76426a08ac7c174f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e022e02117d76426a08ac7c174f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048512e02117d76426a08ac7c174f",
+          "width": 64
+        }
+      ]
+    },
+    "is_playing": true,
+    "progress_ms": 4080,
+    "duration_ms": 222497,
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/28qA8y1sz0FTuSapsCxNOG"
+    }
+  }
+}

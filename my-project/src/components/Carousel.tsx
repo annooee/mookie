@@ -1,20 +1,56 @@
 import * as React from "react";
-
 import CurrentSong from "@/components/CurrentSong";
 import HistoryCard from "@/components/HistoryCard";
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+// Import the JSON file directly
+import currentTrackData from '../../../backend/current_track.json';
+
+// Type definitions based on your JSON structure
+interface TrackImage {
+  height: number;
+  url: string;
+  width: number;
+}
+
+interface Album {
+  name: string;
+  images: TrackImage[];
+}
+
+interface TrackData {
+  name: string;
+  artists: string[];
+  album: Album;
+  is_playing: boolean;
+  progress_ms: number;
+  duration_ms: number;
+  external_urls: {
+    spotify: string;
+  };
+}
+
+interface CurrentTrackData {
+  timestamp: string;
+  is_playing: boolean;
+  track_data: TrackData;
+}
 
 export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string, index: number) => void }) {
+  const [currentTrack, setCurrentTrack] = React.useState<CurrentTrackData | null>(null);
+
+  React.useEffect(() => {
+    setCurrentTrack(currentTrackData);
+  }, []);
+
   const currentSong = {
     color: "#5F2F85",
-    songTitle: "I Wonder",
-    artistName: "Kanye West",
-    imageUrl: "/path-to-image"
+    songTitle: currentTrack?.track_data?.name || "Loading...",
+    artistName: currentTrack?.track_data?.artists?.[0] || "Loading...",
+    imageUrl: currentTrack?.track_data?.album?.images?.[0]?.url || "/path-to-default-image"
   };
 
   const historyItems = [
@@ -24,7 +60,6 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
       artistName: "From the gym, to the office. You were nothing but vibes and just a chill guy ig.",
       date: "29 Nov"
     },
-    // Add more history items as needed
   ];
 
   const allSlides = [currentSong, ...historyItems];
@@ -50,7 +85,7 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
         <CarouselItem key="current">
           <div className="p-1">
             <CurrentSong
-              date="30 Nov"
+              date={new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short' })}
               songTitle={currentSong.songTitle}
               artistName={currentSong.artistName}
               imageUrl={currentSong.imageUrl}
@@ -76,3 +111,5 @@ export function CarouselMain({ onSlideChange }: { onSlideChange: (color: string,
     </Carousel>
   );
 }
+
+export default CarouselMain;

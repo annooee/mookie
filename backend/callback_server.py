@@ -72,7 +72,7 @@ class CallbackHandler(http.server.SimpleHTTPRequestHandler):
                 token_data = json.loads(post_data)
                 
                 # Save the token to a file
-                path = '/Users/annieyu/mookie/backend/access_token.json'
+                path = 'access_token.json'
                 with open(path, "w") as f:
                     json.dump(token_data, f)
                 

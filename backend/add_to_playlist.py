@@ -14,12 +14,13 @@ with open('client_id.txt', 'r') as file:
 
 # Spotify API credentials
 REDIRECT_URI = "http://localhost:8888/callback"
-PLAYLIST_ID = "4coH6SCKnKD56jANMCI12k"
+PLAYLIST_ID = "44wWhdRqqsioOLsDW7a5n9"
 
 # Authorization scopes
 SCOPES = [
     "playlist-modify-public",
-    "playlist-modify-private"
+    "playlist-modify-private",
+    "user-read-currently-playing"
 ]
 
 def get_cached_token():
