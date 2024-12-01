@@ -1,36 +1,36 @@
 {
-  "timestamp": "2024-12-01T06:59:03.494898",
+  "timestamp": "2024-12-01T08:21:19.453045",
   "is_playing": true,
   "track_data": {
-    "name": "Can You Hear The Music",
+    "name": "Silent Night",
     "artists": [
-      "Ludwig G\u00f6ransson"
+      "Mariah Carey"
     ],
     "album": {
-      "name": "Oppenheimer (Original Motion Picture Soundtrack)",
+      "name": "Merry Christmas",
       "images": [
         {
           "height": 640,
-          "url": "https://i.scdn.co/image/ab67616d0000b273af634982d9b15de3c77f7dd9",
+          "url": "https://i.scdn.co/image/ab67616d0000b2734246e3158421f5abb75abc4f",
           "width": 640
         },
         {
           "height": 300,
-          "url": "https://i.scdn.co/image/ab67616d00001e02af634982d9b15de3c77f7dd9",
+          "url": "https://i.scdn.co/image/ab67616d00001e024246e3158421f5abb75abc4f",
           "width": 300
         },
         {
           "height": 64,
-          "url": "https://i.scdn.co/image/ab67616d00004851af634982d9b15de3c77f7dd9",
+          "url": "https://i.scdn.co/image/ab67616d000048514246e3158421f5abb75abc4f",
           "width": 64
         }
       ]
     },
     "is_playing": true,
-    "progress_ms": 65682,
-    "duration_ms": 110160,
+    "progress_ms": 4607,
+    "duration_ms": 219293,
     "external_urls": {
-      "spotify": "https://open.spotify.com/track/4VnDmjYCZkyeqeb0NIKqdA"
+      "spotify": "https://open.spotify.com/track/1sFWEpf1aPYN576LS1aa4Y"
     }
   }
 }
