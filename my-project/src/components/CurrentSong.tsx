@@ -37,17 +37,17 @@ const CurrentSong: React.FC<CurrentSongProps> = ({
     return (
         <div className="w-full flex justify-center mt-4">
             <div
-                className="w-full aspect-[5/5] rounded-xl p-6 flex flex-col justify-between relative" // Increased width from 4/5 (80%) to 90%, increased height aspect ratio
+                className="w-full h-[600px] rounded-xl p-6 flex flex-col justify-between"
                 style={{ backgroundColor }}
             >
                 {/* Date Display */}
-                <div className="text-white/80 text-sm font-medium flex flex-col">
+                <div className="text-white/80 text-sm font-medium">
                     <div className="text-2xl font-bold text-white">{day}</div>
                     <div>{month}</div>
                 </div>
 
                 {/* Album Art */}
-                <div className="flex justify-center items-center flex-1 my-4">
+                <div className="flex justify-center items-center flex-grow my-4">
                     <div className="aspect-square w-64 rounded-lg overflow-hidden shadow-lg">
                         <img
                             src={imageUrl}
