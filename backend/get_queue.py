@@ -4,6 +4,9 @@ from datetime import datetime
 from typing import Optional, Dict, Any
 
 def get_queue(access_token: str, output_file: str = "next_in_queue.json") -> Optional[Dict[str, Any]]:
+
+
+    print(access_token)
     """
     Fetch what's next in the Spotify queue and save to JSON.
     
@@ -74,5 +77,26 @@ def get_queue(access_token: str, output_file: str = "next_in_queue.json") -> Opt
         print(f"Error parsing response: {e}")
     except KeyError as e:
         print(f"Unexpected response format: {e}")
-    
+
     return None
+
+if __name__ == "__main__":
+    # Read the access token from file
+    try:
+        with open("access_token.json", "r") as f:
+            token_data = json.load(f)
+            access_token = token_data["access_token"]
+        next_track = get_queue(access_token)
+        if next_track:
+            print(f"Next in queue: {next_track['name']}")
+            print(f"By: {', '.join(next_track['artists'])}")
+            print(f"From album: {next_track['album']['name']}")
+            print(f"Duration: {next_track['duration_ms']}ms")
+        else:
+            print("No tracks in queue or error occurred")
+    except FileNotFoundError:
+        print("access_token.json not found")
+    except json.JSONDecodeError:
+        print("Error parsing access_token.json")
+    except KeyError:
+        print("Invalid token file format")

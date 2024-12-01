@@ -7,6 +7,7 @@ from langchain.chains import LLMChain
 from send_image import send_image
 from add_to_playlist import main
 from get_currently_playing import get_currently_playing
+from get_queue import get_queue
 import json
 
 
@@ -15,15 +16,21 @@ prompt = (open('prompt.txt', 'r')).read()
 
 # Load the access token from file
 with open("access_token.json", "r") as f:
-    token_data = json.load(f)
-    access_token = token_data.get("access_token")
+    curr_token_data = json.load(f)
+    access_token = curr_token_data.get("access_token")
+    print(f"access token: {access_token}")  # Corrected f-string syntax
 
+# with open("next_in_queue.json", "r") as f:
+#     next_token_data = json.load(f)
+#     next_token = next_token_data.get("next_in_queue")
+#     print(f"next token: {next_token}")
 
 class ImageToPlaylistChain:
     def __init__(self, send_image, access_token):
         self.image_path = send_image
         self.llm = Ollama()  # Initialize Ollama
         self.access_token = access_token  # Store the access token
+        self.next_token = access_token  # Store the next token
 
     def encode_image(self):
         """Encodes the image file to base64."""
@@ -94,21 +101,10 @@ class ImageToPlaylistChain:
         """Call this function to process the current track based on the access token."""
         # Fetch the current track using the access token
         current_track = get_currently_playing(self.access_token)  # Call the function from get_currently_playing.py
-        
-        
-        # if current_track:
-        #     track_info = {
-        #         "song": current_track['name'],
-        #         "artist": ", ".join(current_track['artists']),
-        #         "album": current_track['album']['name'],
-        #         "is_playing": current_track['is_playing']
-        #     }
-        #     print(track_info)
-        #     return track_info
-        # else:
-        #     print("No track currently playing or error occurred.")
-        #     return None
-        
+    
+    def get_next_token(self):
+        """Fetches the next track in the queue."""
+        next_track = get_queue(self.next_token)        
 
     def main(self):
         """Puts everything together and calls the generate_playlist method."""
@@ -121,6 +117,10 @@ class ImageToPlaylistChain:
         track_info = self.get_and_process_current_track()
         if track_info:
             print(f"Currently playing track: {track_info}")
+        
+        next_track = self.get_next_token()
+        if next_track:
+            print(f"Next track in queue: {next_track}")
 
 
 # # Example usage:

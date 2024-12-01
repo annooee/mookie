@@ -1,5 +1,36 @@
 {
-  "timestamp": "2024-12-01T05:14:03.115823",
-  "is_playing": false,
-  "track_data": null
+  "timestamp": "2024-12-01T07:05:03.924745",
+  "is_playing": true,
+  "track_data": {
+    "name": "Don't Stop Believin' (2022 Remaster)",
+    "artists": [
+      "Journey"
+    ],
+    "album": {
+      "name": "Escape (2022 Remaster)",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27363fa4751355b66f236943275",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0263fa4751355b66f236943275",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485163fa4751355b66f236943275",
+          "width": 64
+        }
+      ]
+    },
+    "is_playing": true,
+    "progress_ms": 31970,
+    "duration_ms": 249600,
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/5RKQ5NdjSh2QzD4MaunT91"
+    }
+  }
 }
