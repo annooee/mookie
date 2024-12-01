@@ -48,55 +48,65 @@ interface QueueResponse {
 export function useCurrentTrack() {
   const [currentTrack, setCurrentTrack] = useState<SpotifyDataResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCurrentTrack = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/current-track');
-        if (!response.ok) throw new Error('Failed to fetch current track');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setCurrentTrack(data);
+        setError(null);
       } catch (err) {
+        console.error('Error fetching current track:', err);
         setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    // Initial fetch
     fetchCurrentTrack();
-
-    // Set up polling every 5 seconds
     const interval = setInterval(fetchCurrentTrack, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  return { currentTrack, error };
+  return { currentTrack, error, isLoading };
 }
 
 export function useQueue() {
   const [queue, setQueue] = useState<QueueResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchQueue = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/queue');
-        if (!response.ok) throw new Error('Failed to fetch queue');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         setQueue(data);
+        setError(null);
       } catch (err) {
+        console.error('Error fetching queue:', err);
         setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    // Initial fetch
     fetchQueue();
-
-    // Set up polling every 5 seconds
     const interval = setInterval(fetchQueue, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  return { queue, error };
+  return { queue, error, isLoading };
 } 
