@@ -1,0 +1,17 @@
+```
+===INSTRUCTIONS (DO NOT INCLUDE IN OUTPUT)=== 
+limit your reply to 10 words, based on this image, in any way realted to the image, name 2 songs from 80s, 90s or 2000s, provide format format: "Song Name - Artist"
+do nothing else except the exact above, ask no questions, just give the song names in the above format: "Song Name - Artist"
+
+
+
+## OUTPUT FORMAT
+"song_name" - Artist, "song_name"- Artist
+
+
+===EXAMPLE IMPLEMENTATION===
+For a photo of Snow or a Christimas Tree, suggests the output:
+All I want for Christimas - Mariah Carey
+It's beginning to look alot like Christimas - Michael Buble
+```
+
