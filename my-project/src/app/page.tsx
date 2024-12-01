@@ -17,7 +17,7 @@ export default function Home() {
         background: `linear-gradient(to bottom, ${bgColor} 0%, rgba(0, 0, 0, 1) 100%)`,
         transition: 'background 0.3s ease-in-out' 
       }}
-      className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)]"
+      className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)] overflow-hidden"
     >
       <main className="w-full flex flex-col row-start-2 items-center">
         <Header/>

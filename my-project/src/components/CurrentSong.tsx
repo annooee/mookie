@@ -35,9 +35,9 @@ const CurrentSong: React.FC<CurrentSongProps> = ({
         : ['--', '---'];
 
     return (
-        <div className="w-full flex justify-center px-4 mt-4">
+        <div className="w-full flex justify-center mt-4">
             <div
-                className="w-[90%] aspect-[5/5] rounded-xl p-6 flex flex-col justify-between relative" // Increased width from 4/5 (80%) to 90%, increased height aspect ratio
+                className="w-full aspect-[5/5] rounded-xl p-6 flex flex-col justify-between relative" // Increased width from 4/5 (80%) to 90%, increased height aspect ratio
                 style={{ backgroundColor }}
             >
                 {/* Date Display */}
