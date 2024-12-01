@@ -37,7 +37,7 @@ class ImageToPlaylistChain:
             model='llama3.2-vision',
             messages=[{
                 'role': 'user',
-                'content': 'From this image, generate me a list of 5 songs that fit this scenery in "Song name" - Artist format. Just a list, no additional text, no *',
+                'content': 'From this image, generate me a list of 2 songs that fit this scenery in "Song name" - Artist format. Just a list, no additional text, no *, generate new songs you have not generated before and from the 2010-2020s era.',
                 'images': [encoded_image]  # Pass the base64-encoded image here
             }]
         )
@@ -77,6 +77,12 @@ class ImageToPlaylistChain:
         
         print(f"Playlist has been written to {file_path}")
 
+    def main(self):
+        """Puts everything together and calls the generate_playlist method."""
+        songs = self.generate_playlist()
+        print("Generated Playlist:")
+        for song in songs:
+            print(song)
 
 # # Example usage:
 # chain = ImageToPlaylistChain(image_path)
@@ -90,6 +96,7 @@ class ImageToPlaylistChain:
 # # for song in songs:
 # #     print(song)
 
-chain = ImageToPlaylistChain(image_path)
-songs = chain.generate_playlist()
-print(songs)
+# chain = ImageToPlaylistChain(image_path)
+# songs = chain.generate_playlist()
+# print(songs)
+
