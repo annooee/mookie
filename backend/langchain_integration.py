@@ -7,7 +7,9 @@ from langchain.chains import LLMChain
 from send_image import send_image
 from add_to_playlist import main
 
+
 image_path = '../images/image.png' # this is static
+prompt = (open('prompt.txt', 'r')).read()
 
 class ImageToPlaylistChain:
     def __init__(self, send_image):
@@ -34,10 +36,11 @@ class ImageToPlaylistChain:
 
         # Correct usage of Ollama's `generate()` method with `model` and `messages`
         response = ollama.chat(
-            model='llama3.2-vision',
+            #model="llama3.2-vision",
+            model="llava",
             messages=[{
                 'role': 'user',
-                'content': 'From this image, generate me a list of 2 songs that fit this scenery in "Song name" - Artist format. Just a list, no additional text, no *, generate new songs you have not generated before and from the 2010-2020s era.',
+                'content': prompt,
                 'images': [encoded_image]  # Pass the base64-encoded image here
             }]
         )
@@ -85,9 +88,9 @@ class ImageToPlaylistChain:
             print(song)
 
 # # Example usage:
-# chain = ImageToPlaylistChain(image_path)
-# songs = chain.generate_playlist()
-# print(songs)
+chain = ImageToPlaylistChain(image_path)
+songs = chain.generate_playlist()
+print(songs)
 
 # # TXT File
 # file_name = "generated_playlist.txt"
