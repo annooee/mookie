@@ -9,13 +9,14 @@ interface QueueItem {
 
 interface QueueProps {
   queueItems: QueueItem[];
+  isHistory?: boolean;
 }
 
-const Queue = ({ queueItems }: QueueProps) => {
+const Queue = ({ queueItems, isHistory = false }: QueueProps) => {
   if (!queueItems || queueItems.length === 0) {
     return (
       <div className="w-full flex flex-col items-center">
-        <h3 className="text-white mt-6">Up Next</h3>
+        <h3 className="text-white mt-6">{isHistory ? 'History' : 'Up Next'}</h3>
         <p className="text-gray-400 text-sm">No tracks in queue</p>
       </div>
     );
@@ -23,7 +24,7 @@ const Queue = ({ queueItems }: QueueProps) => {
 
   return (
     <div className="w-full flex flex-col items-center gap-3">
-      <h3 className="text-white mt-4 mb-3">Up Next</h3>
+      <h3 className="text-white mt-4 mb-3">{isHistory ? 'History' : 'Up Next'}</h3>
       {queueItems.map((item, index) => (
         <div key={index} className="flex items-center gap-4 p-3 w-4/5 border border-gray-200/20 rounded-lg">
           <img

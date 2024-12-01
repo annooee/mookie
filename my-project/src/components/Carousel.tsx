@@ -6,38 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-// Import the JSON file directly
-import currentTrackData from '../../../backend/current_track.json';
-
-// Type definitions based on your JSON structure
-interface TrackImage {
-  height: number;
-  url: string;
-  width: number;
-}
-
-interface Album {
-  name: string;
-  images: TrackImage[];
-}
-
-interface TrackData {
-  name: string;
-  artists: string[];
-  album: Album;
-  is_playing: boolean;
-  progress_ms: number;
-  duration_ms: number;
-  external_urls: {
-    spotify: string;
-  };
-}
-
-interface CurrentTrackData {
-  timestamp: string;
-  is_playing: boolean;
-  track_data: TrackData;
-}
+import { useCurrentTrack } from '@/hooks/useSpotifyData';
 
 export function CarouselMain({ 
   onSlideChange,
@@ -46,13 +15,8 @@ export function CarouselMain({
   onSlideChange: (color: string, index: number) => void;
   setBgColor: (color: string) => void;
 }) {
-  const [currentTrack, setCurrentTrack] = React.useState<CurrentTrackData | null>(null);
+  const { currentTrack, error } = useCurrentTrack();
   const [currentSongColor, setCurrentSongColor] = React.useState("#8C8C8C");
-
-  React.useEffect(() => {
-    setCurrentTrack(currentTrackData);
-  }, []);
-  
 
   const handleColorChange = (color: string) => {
     setCurrentSongColor(color);
