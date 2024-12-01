@@ -10,23 +10,25 @@ interface SongElementProps {
 // Color configurations - can be modified here
 const colors = {
   upNext: {
-    background: 'bg-blue-900/50',
-    hover: 'hover:bg-blue-800/50'
+    background: 'bg-stone-300/3',
+    hover: 'hover:bg-stone-300/3',
+    border: 'border border-gray-600'
   },
   normal: {
-    background: 'bg-black/50',
-    hover: 'hover:bg-black/30'
+    background: 'bg-black/10',
+    hover: 'hover:bg-black/10',
+    border: ''
   }
 };
 
 const SongElement: React.FC<SongElementProps> = ({ isUpNext, songName, artist, coverUrl }) => {
   return (
-    <div className={`flex mt-8 items-center p-4 rounded-lg transition-colors w-[90%] ${
+    <div className={`flex items-center p-2 rounded-lg transition-colors w-[90%] mb-3 ${
       isUpNext 
-        ? `${colors.upNext.background} ${colors.upNext.hover}`
-        : `${colors.normal.background} ${colors.normal.hover}`
+        ? `${colors.upNext.background} ${colors.upNext.hover} ${colors.upNext.border}`
+        : `${colors.normal.background} ${colors.normal.hover} ${colors.normal.border}`
     }`}>
-      <div className="w-12 h-12 relative flex-shrink-0">
+      <div className="w-9 h-9 relative flex-shrink-0">
         <img
           src={coverUrl || "https://via.placeholder.com/48"}
           alt={`${songName} cover`}
@@ -36,7 +38,7 @@ const SongElement: React.FC<SongElementProps> = ({ isUpNext, songName, artist, c
       
       <div className="ml-4 flex-grow min-w-0">
         <div className="flex flex-col">
-          <h3 className="text-white font-medium text-base truncate">
+          <h3 className="text-white font-sm text-base truncate">
             {songName}
           </h3>
           <p className="text-gray-400 text-xs font-light truncate mt-1">

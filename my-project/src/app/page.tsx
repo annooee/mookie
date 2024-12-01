@@ -27,7 +27,7 @@ export default function Home() {
           isUpNext={true}
           songName="FLY HIGH!!!!"
           artist="Burnout Syndromes"
-          coverUrl="https://static.wikia.nocookie.net/jpop/images/e/e0/FLY_HIGH_Limited.jpg/revision/latest?cb=20191210062110"
+          coverUrl="https://i.scdn.co/image/ab67616d0000b2739b2fd3a5d29c28e87a25553a"
         />
         <SongElement
           isUpNext={false}
