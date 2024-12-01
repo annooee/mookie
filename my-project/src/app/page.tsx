@@ -7,7 +7,7 @@ import Queue from "../components/Queue";
 import { useQueue } from '@/hooks/useSpotifyData';
 
 export default function Home() {
-  const { queue, error } = useQueue();
+  const { queue, error, isLoading } = useQueue();
   const [bgColor, setBgColor] = useState("");
   const [currentQueueIndex, setCurrentQueueIndex] = useState(0);
   const [isCurrentlyListening, setIsCurrentlyListening] = useState(true);
@@ -19,19 +19,16 @@ export default function Home() {
     // Add more dates as needed
   ];
 
+  const currentQueueItems = queue?.track_data ? [{
+    isUpNext: true,
+    songName: queue.track_data.name,
+    artist: queue.track_data.artists.join(', '),
+    coverUrl: queue.track_data.album.images[2]?.url || "/path-to-default-image"
+  }] : [];
+
   const allQueues = [
-    // Queue for first carousel item
-    [
-      {
-        isUpNext: true,
-        songName: queue?.track_data?.name || "Loading...",        
-        artist: queue?.track_data?.artists.join(', ') || "Loading...",
-        coverUrl: queue?.track_data?.album.images[2].url || "/path-to-default-image"
-      },
-      
-      // ... more songs for first queue
-    ],
-    // Queue for second carousel item
+    currentQueueItems,  // Use the transformed queue data for first carousel item
+    // Queue for second carousel item (history)
     [
       {
         isUpNext: false,
@@ -74,6 +71,10 @@ export default function Home() {
     setIsCurrentlyListening(index === 0);
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div
       style={{
@@ -93,11 +94,10 @@ export default function Home() {
           setBgColor={setBgColor}
         />
         <Queue 
-          queueItems={currentQueueIndex === 0 ? allQueues[currentQueueIndex] : allQueues[currentQueueIndex]} 
+          queueItems={allQueues[currentQueueIndex]} 
           isHistory={currentQueueIndex !== 0}
         />
       </main>
-
     </div>
   );
 }
