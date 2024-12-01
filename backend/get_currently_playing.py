@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 
 def get_currently_playing(access_token: str, output_file: str = "current_track.json") -> Optional[Dict[str, Any]]:
+    print(output_file)
     """
     Fetch the currently playing track information from Spotify API and save to JSON.
     
@@ -76,6 +77,15 @@ def get_currently_playing(access_token: str, output_file: str = "current_track.j
         with open(output_file, 'w') as f:
             json.dump(output_data, f, indent=2)
         print(f"Track data written to {output_file}")
+
+        if current_track:
+            print(f"Currently playing: {current_track['name']}")
+            print(f"By: {', '.join(current_track['artists'])}")
+            print(f"From album: {current_track['album']['name']}")
+            print(f"Is playing: {current_track['is_playing']}")
+            print(f"Progress: {current_track['progress_ms']}ms / {current_track['duration_ms']}ms")
+        else:
+            print("No track currently playing or error occurred")
 
         return current_track
 

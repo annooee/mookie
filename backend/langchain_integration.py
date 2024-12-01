@@ -6,15 +6,24 @@ from langchain.llms import Ollama
 from langchain.chains import LLMChain
 from send_image import send_image
 from add_to_playlist import main
+from get_currently_playing import get_currently_playing
+import json
 
 
 image_path = '../images/image.png' # this is static
 prompt = (open('prompt.txt', 'r')).read()
 
+# Load the access token from file
+with open("access_token.json", "r") as f:
+    token_data = json.load(f)
+    access_token = token_data.get("access_token")
+
+
 class ImageToPlaylistChain:
-    def __init__(self, send_image):
+    def __init__(self, send_image, access_token):
         self.image_path = send_image
         self.llm = Ollama()  # Initialize Ollama
+        self.access_token = access_token  # Store the access token
 
     def encode_image(self):
         """Encodes the image file to base64."""
@@ -79,6 +88,27 @@ class ImageToPlaylistChain:
                 f.write(f"{song}\n")
         
         print(f"Playlist has been written to {file_path}")
+        
+    
+    def get_and_process_current_track(self):
+        """Call this function to process the current track based on the access token."""
+        # Fetch the current track using the access token
+        current_track = get_currently_playing(self.access_token)  # Call the function from get_currently_playing.py
+        
+        
+        # if current_track:
+        #     track_info = {
+        #         "song": current_track['name'],
+        #         "artist": ", ".join(current_track['artists']),
+        #         "album": current_track['album']['name'],
+        #         "is_playing": current_track['is_playing']
+        #     }
+        #     print(track_info)
+        #     return track_info
+        # else:
+        #     print("No track currently playing or error occurred.")
+        #     return None
+        
 
     def main(self):
         """Puts everything together and calls the generate_playlist method."""
@@ -87,19 +117,17 @@ class ImageToPlaylistChain:
         for song in songs:
             print(song)
 
+        # Now process the current track
+        track_info = self.get_and_process_current_track()
+        if track_info:
+            print(f"Currently playing track: {track_info}")
+
+
 # # Example usage:
-chain = ImageToPlaylistChain(image_path)
-songs = chain.generate_playlist()
-print(songs)
-
-# # TXT File
-# file_name = "generated_playlist.txt"
-# chain.save_playlist_to_txt(songs, file_name)
-# # print("Generated Playlist:")
-# # for song in songs:
-# #     print(song)
-
-# chain = ImageToPlaylistChain(image_path)
+# chain = ImageToPlaylistChain(image_path, access_token)
 # songs = chain.generate_playlist()
+# #bro = chain.get_and_process_current_track()
 # print(songs)
 
+chain = ImageToPlaylistChain(image_path, access_token)  # Pass the access_token
+chain.main()  # Call the main method on the chain instance

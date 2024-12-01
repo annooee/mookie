@@ -10,6 +10,7 @@ interface CurrentSongProps {
   currentTime?: string;
   totalDuration?: string;
   progress?: number;
+  onColorChange?: (color: string) => void;
 }
 
 const getAverageColor = (imgUrl: string): Promise<string> => {
@@ -71,25 +72,32 @@ const CurrentSong: React.FC<CurrentSongProps> = ({
   date,
   songTitle,
   artistName,
-  imageUrl = 'https://placehold.co/400x400',
+  imageUrl,
   backgroundColor = '#D3D3D3',
   currentTime = '0:01',
   totalDuration = '3:35',
-  progress = 0.1
+  progress = 0.1,
+  onColorChange
 }) => {
   const [averageColor, setAverageColor] = useState('#D3D3D3');
   
   useEffect(() => {
     getAverageColor(imageUrl)
-      .then(color => setAverageColor(color))
-      .catch(() => setAverageColor(backgroundColor));
-  }, [imageUrl, backgroundColor]);
+      .then(color => {
+        setAverageColor(color);
+        onColorChange?.(color);
+      })
+      .catch(() => {
+        setAverageColor(backgroundColor);
+        onColorChange?.(backgroundColor);
+      });
+  }, [imageUrl, backgroundColor, onColorChange]);
   
   // Safely handle date splitting
   const [day, month] = (date || '').split(' ').length === 2
     ? date.split(' ')
     : ['--', '---'];
-
+  
   return (
     <div className="w-full flex justify-center mt-4">
       <div

@@ -47,13 +47,26 @@ export function CarouselMain({
   setBgColor: (color: string) => void;
 }) {
   const [currentTrack, setCurrentTrack] = React.useState<CurrentTrackData | null>(null);
+  const [currentSongColor, setCurrentSongColor] = React.useState("#8C8C8C");
 
   React.useEffect(() => {
     setCurrentTrack(currentTrackData);
   }, []);
+  
+
+  const handleColorChange = (color: string) => {
+    setCurrentSongColor(color);
+    // Only update the background if we're on the first slide (current track)
+    if (api?.selectedScrollSnap() === 0) {
+      setBgColor(color);
+    }
+  };
+
+  // Store carousel API reference
+  const [api, setApi] = React.useState<any>(null);
 
   const currentSong = {
-    color: "#8C8C8C",
+    color: currentSongColor,
     songTitle: currentTrack?.track_data?.name || "Loading...",
     artistName: currentTrack?.track_data?.artists?.[0] || "Loading...",
     imageUrl: currentTrack?.track_data?.album?.images?.[0]?.url || "/path-to-default-image"
@@ -61,7 +74,7 @@ export function CarouselMain({
 
   const historyItems = [
     { 
-      color: "#FFAE00", 
+      color: "#59C00A", 
       songTitle: "chill guy gyatt\nbrat thursday", 
       artistName: "From the gym, to the office. You were nothing but vibes and just a chill guy ig.",
       date: "29 Nov"
@@ -69,11 +82,6 @@ export function CarouselMain({
   ];
 
   const allSlides = [currentSong, ...historyItems];
-
-  // Set initial background color when component mounts
-  React.useEffect(() => {
-    setBgColor(currentSong.color);
-  }, [currentTrack]); // Depend on currentTrack to update when data loads
 
   return (
     <Carousel 
@@ -83,11 +91,18 @@ export function CarouselMain({
       }}
       className="w-full max-w-xs"
       setApi={(api) => {
+        setApi(api);
         if (!api) return;
         
         api.on("select", () => {
           const selectedIndex = api.selectedScrollSnap();
-          onSlideChange(allSlides[selectedIndex].color, selectedIndex);
+          // Use currentSongColor only for index 0, otherwise use the static colors
+          const color = selectedIndex === 0 
+            ? currentSongColor 
+            : historyItems[selectedIndex - 1].color;
+          
+          onSlideChange(color, selectedIndex);
+          setBgColor(color);
         });
       }}
     >
@@ -101,6 +116,7 @@ export function CarouselMain({
               artistName={currentSong.artistName}
               imageUrl={currentSong.imageUrl}
               backgroundColor={currentSong.color}
+              onColorChange={handleColorChange}
             />
           </div>
         </CarouselItem>

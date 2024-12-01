@@ -1,36 +1,37 @@
 {
-  "timestamp": "2024-12-01T04:04:36.016817",
+  "timestamp": "2024-12-01T01:44:39.373399",
   "is_playing": true,
   "track_data": {
-    "name": "\u5149\u308b\u3068\u304d",
+    "name": "Father Time (feat. Sampha)",
     "artists": [
-      "Hitsujibungaku"
+      "Kendrick Lamar",
+      "Sampha"
     ],
     "album": {
-      "name": "our hope",
+      "name": "Mr. Morale & The Big Steppers",
       "images": [
         {
           "height": 640,
-          "url": "https://i.scdn.co/image/ab67616d0000b2739d6948f49f17ec19a396f73f",
+          "url": "https://i.scdn.co/image/ab67616d0000b2732e02117d76426a08ac7c174f",
           "width": 640
         },
         {
           "height": 300,
-          "url": "https://i.scdn.co/image/ab67616d00001e029d6948f49f17ec19a396f73f",
+          "url": "https://i.scdn.co/image/ab67616d00001e022e02117d76426a08ac7c174f",
           "width": 300
         },
         {
           "height": 64,
-          "url": "https://i.scdn.co/image/ab67616d000048519d6948f49f17ec19a396f73f",
+          "url": "https://i.scdn.co/image/ab67616d000048512e02117d76426a08ac7c174f",
           "width": 64
         }
       ]
     },
     "is_playing": true,
-    "progress_ms": 70553,
-    "duration_ms": 351880,
+    "progress_ms": 4080,
+    "duration_ms": 222497,
     "external_urls": {
-      "spotify": "https://open.spotify.com/track/7Aflm6F9jMApKat1tjvhxT"
+      "spotify": "https://open.spotify.com/track/28qA8y1sz0FTuSapsCxNOG"
     }
   }
 }

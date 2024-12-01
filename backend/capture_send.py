@@ -2,7 +2,7 @@ import subprocess
 
 def trigger_capture_and_send():
     # Define the curl command
-    url = "http://10.0.0.193:8080/capture_and_send"
+    url = "http://172.20.10.2:8080/capture_and_send"
     command = ["curl", url]
 
     try:
