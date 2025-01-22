@@ -1,14 +1,14 @@
 ![mookie](mookie.jpg)
 
-# Mookie - The Soundtrack of your Life
-Is your life feeling stale? Have you ever wanted to feel like the main character in a movie? Mookie harnesses the power of vision AI to create a dynamically changing playlist that reflects your real-time environment, and provides a daily review to keep track of your life! 
-
+## Meet Mookie, your personal music pookie
 > *By: Annie Yu, Pranav Varma, Anthony Ung, and Joshua Shiman*
 
-## How does Mookie work?
+**Mookie** transforms your daily routine into a cinematic experience. Mookie is an integrated wearable experience focused on making each day special, powered by a small Raspberry Pi Zero and powerful vision capable AI-models. Mookie creates and plays bespoke playlists throughout the day by continuously taking snapshots of your experiences at regular intervals throughout the day. Mookie analyze attributes, feelings and the mood of your current environment using a locally-hosted, open source, multi-modal GenAI model. Mookie takes the sentiments and and key factors as input for a semantic search of publicly sourced music datasets and maps the vibes of your scene to songs that Mookie procures and compiles into a playlist in real-time as you listen in. At the end of your day, Mookie provides a fun and convinient daily wrapped to digest and make every day special.
 
-Mookie leverages a Raspberry Pi Zero 2 Wifi with the Raspberry Pi Camera 3 Module to take continously take snapshots of your experiences at regular intervals throughout the day. *But what about my data privacy?* Mookie passes off those images to a locally-hosted, open source, multi-modal GenAI model to analyze attributes, feelings and the mood of your current environment. Mookie takes that as an input for a semantic search of publically sourced music datasets and maps the vibes of your situation to songs that Mookie compiles into a playlist. At the end of your day, Mookie provides a daily wrapped to digest and reflect on your day!
+![hardware](hardware.jpg)
 
+## Why build Mookie?
+In 2024, 48.6% of Canadians aged 15 and older were highly satisfied with their lives, down from 54.0% three years earlier. (Government of Canada 2024) Canadians are looking for solutions that can help them be more satisfied with their daily lives. That's where Mookie comes in! We feel that music can play a huge role in how we feel, and Mookie creates playlists in real-time to make every moment just a little bit more special.
 
 ## How to Run - Backend
 
