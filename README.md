@@ -10,6 +10,8 @@
 ## Why build Mookie?
 In 2024, 48.6% of Canadians aged 15 and older were highly satisfied with their lives, down from 54.0% three years earlier. (Government of Canada 2024) Canadians are looking for solutions that can help them be more satisfied with their daily lives. That's where Mookie comes in! We feel that music can play a huge role in how we feel, and Mookie creates playlists in real-time to make every moment just a little bit more special.
 
+![group picture](group-picture.jpg)
+
 ## How to Run - Backend
 
 1. Clone repository
